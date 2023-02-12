@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-//import './App.css';
 import employeeService from "../services/employee.service";
 import 'bootstrap/dist/css/bootstrap.css'
 
