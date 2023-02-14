@@ -21,6 +21,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloudUpload from "@material-ui/icons/CloudUpload";
 import clsx from "clsx";
 import { LinearProgress } from "@material-ui/core";
+import axios from "axios";
 
 const useStyles = makeStyles((theme)=>({
     dropZoneContainer:{
@@ -74,6 +75,9 @@ const Upload = () => {
     const [success, setSuccess] = React.useState(false);
     const [file, setFile] = React.useState();
     const [preview, setPreview] = React.useState();
+    const [percent, setPercent] = React.useState(0);
+    const [downloadUri, setDownloadUri] = React.useState();
+    const [selectedImageFile, setSelectedImageFile] = React.useState();
     const buttonClassname = clsx({
         [classes.buttonSuccess]: success,
       });
@@ -92,20 +96,33 @@ const Upload = () => {
    const {ref,...rootProps} = getRootProps();
 
    const uploadFile = async () => {
-    // try {
-    //   setSuccess(false);
-    //   setLoading(true);
-    //   const formData = new FormData();
-    //   formData.append("file", file);
-    //   const API_URL = "http://localhost:8080/files";
-    //   const response = await axios.put(API_URL, formData, {
-    //     onUploadProgress: (progressEvent) => {
-    //       const percentCompleted = Math.round(
-    //         (progressEvent.loaded * 100) / progressEvent.total
-    //       );
-    //       setPercent(percentCompleted);
-        // },
-      };
+    try {
+        setSuccess(false);
+        setLoading(true);
+        const formData = new FormData();
+        formData.append("file", file);
+        const API_URL = "http://localhost:8888/files";
+        const response = await axios.put(API_URL, formData, {
+            onUploadProgress: (progressEvent) => {
+              const percentCompleted = 
+                Math.round(progressEvent.loaded * 100) / progressEvent.total;   
+              setPercent(percentCompleted);
+            },
+        });
+        setDownloadUri(response.data.fileDownloadUri) // is set in the backed controller
+        setSuccess(true);
+        setLoading(false);
+
+    } catch (err) {
+        alert(err.message)
+        
+    }
+   }
+
+
+
+
+      
 
 
 
@@ -192,13 +209,22 @@ const Upload = () => {
                                 </div> {/***********************************************************************************************/}
                             </Grid>
                             <Grid item xs = {10}>
-                                {file &&<Typography variant="body">{file.name}</Typography>}
-                                <div>
+                                {file &&<Typography variant="body1">{file.name}</Typography>}
+                                {(loading &&<div>
                                     <LinearProgress variant="determinate" value={100}/>
                                     <div style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
-                                        <Typography variant="body">100%labas</Typography>
+                                        <Typography variant="body1">100%labas</Typography>
                                     </div>
                                 </div>
+                                )} 
+                                {/* ***********************skliaustas pries braketa************************************************************ */}
+                                {success &&(
+                                    <Typography>
+                                        File Upload Success! <a href={downloadUri} target="_blank" >
+                                            File Url
+                                        </a>
+                                    </Typography>
+                                )}
                             </Grid>
                         </Grid>
                         </>}
