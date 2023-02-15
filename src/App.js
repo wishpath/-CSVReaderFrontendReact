@@ -1,4 +1,4 @@
-import UploadEmployees from "./components/UploadEmployees";
+import Employees from "./components/Employees";
 import NotFound from "./components/NotFound";
 import Upload from "./components/Upload";
 import {BrowserRouter as Router, Routes, Route}
@@ -8,7 +8,7 @@ function App(){
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<UploadEmployees/>} /> 
+        <Route exact path="/" element={<Employees/>} /> 
         <Route path="*" element={<NotFound/>}/>
         <Route path="/upload" element={<Upload/>}/>
       </Routes>
