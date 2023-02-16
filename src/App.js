@@ -1,18 +1,22 @@
+import Navbar from "./components/Navbar";
 import Employees from "./components/Employees";
 import NotFound from "./components/NotFound";
 import Upload from "./components/Upload";
-import {BrowserRouter as Router, Routes, Route}
-from "react-router-dom";
+import About from "./components/About";
+import {Routes, Route} from "react-router-dom";
 
 function App(){
   return (
-    <Router>
+    <>
+    <Navbar className="container"/>
       <Routes>
-        <Route exact path="/" element={<Employees/>} /> 
+        <Route exact path="/employees" element={<Employees/>} /> 
         <Route path="*" element={<NotFound/>}/>
         <Route path="/upload" element={<Upload/>}/>
+        <Route path="/" element={<About/>}/>
       </Routes>
-    </Router>
+    </>
+
   )
 }
 
