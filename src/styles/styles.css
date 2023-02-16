@@ -22,7 +22,7 @@
   }
   
   .site-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   
   .nav ul {
@@ -48,4 +48,20 @@
   
   .nav li:hover {
     background-color: #777;
+  }
+
+  .photo {
+    width: 120px;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+  .ma {
+    margin: auto;
+  }
+
+  .fl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }

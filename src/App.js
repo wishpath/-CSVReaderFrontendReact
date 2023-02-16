@@ -13,7 +13,7 @@ function App(){
         <Route exact path="/employees" element={<Employees/>} /> 
         <Route path="*" element={<NotFound/>}/>
         <Route path="/upload" element={<Upload/>}/>
-        <Route path="/about" element={<About/>}/>
+        <Route path="/" element={<About/>}/>
       </Routes>
     </>
 

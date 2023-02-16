@@ -9,7 +9,7 @@ export default function Navbar() {
       <ul>
         <CustomLink to="/upload">CSV Uploader</CustomLink>
         <CustomLink to="/employees">Employee List</CustomLink>
-        <CustomLink to="/about">About</CustomLink>
+        <CustomLink to="/">About</CustomLink>
       </ul>
     </nav>
   )
