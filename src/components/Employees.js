@@ -7,7 +7,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import "../styles/styles.css"
 import 'bootstrap/dist/css/bootstrap.css'
 
-const UploadEmployees = () => {
+const Employees = () => {
+  document.title = 'Employees List';
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -56,4 +57,4 @@ const UploadEmployees = () => {
     </>
   );
 }
-export default UploadEmployees;
+export default Employees;

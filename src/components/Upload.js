@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme)=>({
 }));
 
 const Upload = () => {
+    document.title = 'CSV Uploader';
     const classes = useStyles();
     const [loading, setLoading] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
