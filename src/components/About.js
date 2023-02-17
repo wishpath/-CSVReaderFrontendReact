@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import "../styles/styles.css"
 
 const About = () => {
-
+document.title = 'About';
   return(
     <>
     <CssBaseline/>
