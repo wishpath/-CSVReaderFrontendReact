@@ -19,6 +19,9 @@ import clsx from "clsx";
 import { LinearProgress } from "@material-ui/core";
 import axios from "axios";
 
+import "../styles/styles.css"
+import uploadService from "../services/upload.service";
+
 const useStyles = makeStyles((theme)=>({
     dropZoneContainer:{
         height:300,
@@ -70,19 +73,19 @@ const Upload = () => {
     const [loading, setLoading] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
     const [file, setFile] = React.useState();
-    const [preview, setPreview] = React.useState();
     const [percent, setPercent] = React.useState(0);
     const [downloadUri, setDownloadUri] = React.useState();
     const buttonClassname = clsx({
         [classes.buttonSuccess]: success,
       });
     const onDrop = React.useCallback((acceptedFiles) => {
-        console.log(acceptedFiles);
-        setFile(acceptedFiles[0]);
-        const previewUrl = URL.createObjectURL(acceptedFiles[0]);
-        setPreview(previewUrl);
-        setSuccess(false);
-        setPercent(0);
+        console.log(acceptedFiles);      
+        if (acceptedFiles[0].type == "text/csv"){
+            setFile(acceptedFiles[0]);
+            setSuccess(false);
+            setPercent(0);
+        }
+
    });
     const { getRootProps, getInputProps } = useDropzone({
         multiple:false, 
@@ -99,6 +102,7 @@ const Upload = () => {
         formData.append("file", file);
         const API_URL = "http://localhost:8888/files";
         const response = await axios.put(API_URL, formData, {
+        // const response = await uploadService.put(formData, {
             onUploadProgress: (progressEvent) => {
               const percentCompleted = 
                 Math.round((progressEvent.loaded * 100) / progressEvent.total);   
@@ -128,7 +132,7 @@ const Upload = () => {
                          <Paper {...rootProps} elevation={0} 
                          className={classes.dropZoneContainer}>
                             <input {...getInputProps()}/>
-                            {file ? <p>{file.name}</p> : <p>Drop or select a file</p> }
+                            {file ? <p>{file.name}</p> : <p>Drop or select a CSV file</p> }
                         </Paper>
                         </RootRef>
                     </Grid>
