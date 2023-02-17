@@ -1,7 +1,7 @@
-import httpClient from '../http-common'
+import httpClientE from '../http-common-employee'
 
 const getAll = () => {
-   return httpClient.get('/load-all')
+   return httpClientE.get('/load-all')
 }
 
 export default {getAll}
