@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Please check:
+[Deployed version](http://129.151.221.35/)
+[Backend source code](https://github.com/wishpath/CSVReaderBackendJavaH2)
+Please note, that this version runs on deployed backend endpoints. If you'd like to switch to backend ran locally, please replace "129.151.221.35" to "localhost" in http-common-employee.js, http-common-employee.js and components/Upload.js 
+
 ## Available Scripts
 
 In the project directory, you can run:
