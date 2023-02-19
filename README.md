@@ -3,12 +3,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Please check:
+
 • [Deployed version](http://129.151.221.35/) of the whole "CSV Uploader" project<br />
 • [Backend source code](https://github.com/wishpath/CSVReaderBackendJavaH2)<br />
-Please note, that this version runs on deployed backend endpoints. If you'd like to switch to backend ran locally, please replace "129.151.221.35" to "localhost" in http-common-employee.js, http-common-employee.js and components/Upload.js . Or simply switch to:<br />
+Please note, that this version runs on deployed backend endpoints. If you'd like to switch to backend ran locally, simply switch to:<br />
 • [Frontend source code version for a local backend](https://github.com/wishpath/-CSVReaderFrontendReact/tree/localHostVersion)
 
-## Available Scripts
+## Instructions
 
 In the project directory, you can run:
 
