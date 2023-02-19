@@ -101,7 +101,7 @@ const Upload = () => {
         setLoading(true);
         const formData = new FormData();
         formData.append("file", file);
-        const API_URL = "http://129.151.221.35:8888/files";
+        const API_URL = "http://localhost:8888/files";
         const response = await axios.put(API_URL, formData, {
         // const response = await uploadService.put(formData, {
             onUploadProgress: (progressEvent) => {
