@@ -22,6 +22,12 @@ import axios from "axios";
 import "../styles/styles.css"
 import uploadService from "../services/upload.service";
 
+import { useEffect, useState } from "react";
+import employeeService from "../services/employee.service";
+import "../styles/styles.css"
+import 'bootstrap/dist/css/bootstrap.css'
+
+
 const useStyles = makeStyles((theme)=>({
     dropZoneContainer:{
         height:300,
@@ -47,25 +53,25 @@ const useStyles = makeStyles((theme)=>({
         display: 'flex',
         alignItems: 'center',
         justifyContent: "center",
-      },
-      buttonSuccess: {
+    },
+    buttonSuccess: {
         backgroundColor: green[500],
         "&:hover": {
           backgroundColor: green[700],
         },
-      },
-      fabProgress: {
+    },
+    fabProgress: {
         color: green[500],
         position: "absolute",
-      },
-      buttonProgress: {
+    },
+    buttonProgress: {
         color: green[500],
         position: "absolute",
         top: "50%",
         left: "50%",
         marginTop: -12,
         marginLeft: -12,
-      },
+    },
 }));
 
 const Upload = () => {
@@ -76,6 +82,7 @@ const Upload = () => {
     const [file, setFile] = React.useState();
     const [percent, setPercent] = React.useState(0);
     const [downloadUri, setDownloadUri] = React.useState();
+    const [employees, setEmployees] = useState([]);
     const buttonClassname = clsx({
         [classes.buttonSuccess]: success,
       });
@@ -103,7 +110,6 @@ const Upload = () => {
         formData.append("file", file);
         const API_URL = "http://129.151.221.35:8888/files";
         const response = await axios.put(API_URL, formData, {
-        // const response = await uploadService.put(formData, {
             onUploadProgress: (progressEvent) => {
               const percentCompleted = 
                 Math.round((progressEvent.loaded * 100) / progressEvent.total);   
@@ -113,11 +119,27 @@ const Upload = () => {
         setDownloadUri(response.data.filedownloadUri)
         setSuccess(true);
         setLoading(false);
+        init();
 
     } catch (err) {
         alert(err.message)
     }
    }
+
+  const init = () => {
+    employeeService.getAll()
+      .then(response => {
+        console.log('Printing employees data', response.data);
+        setEmployees(response.data);
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      }) 
+  }
+
+  useEffect(() => {
+    init();
+  }, []);
 
     return(
         <>
@@ -129,9 +151,9 @@ const Upload = () => {
                 <Grid container>
 
                     <Grid item xs={12} style={{padding:16}}>
-                         <RootRef  rootRef={ref}>
-                         <Paper {...rootProps} elevation={0} 
-                         className={classes.dropZoneContainer}>
+                        <RootRef  rootRef={ref}>
+                        <Paper {...rootProps} elevation={0} 
+                        className={classes.dropZoneContainer}>
                             <input {...getInputProps()}/>
                             {file ? <p>{file.name}</p> : <p>Drop or select a CSV file</p> }
                         </Paper>
@@ -195,6 +217,35 @@ const Upload = () => {
 
 
                 </Grid>
+            </Paper>
+        </Container>
+        <br/>
+        <Container maxWidth="md">
+            <Paper elevation={4}>  
+                <div className="container px-0">
+                <div>
+                    <table className="table table-bordered table-hover">
+                    <thead className="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        employees.map(employee => (
+                        <tr key={employee.id}>
+                            <td>{employee.name}</td>
+                            <td>{employee.email}</td>
+                            <td>{employee.phone}</td>
+                        </tr>
+                        ))
+                    }
+                    </tbody>
+                    </table>
+                </div>
+                </div>
             </Paper>
         </Container>
         </>

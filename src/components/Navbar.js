@@ -8,7 +8,6 @@ export default function Navbar() {
       </Link>
       <ul>
         <CustomLink to="/upload">CSV Uploader</CustomLink>
-        <CustomLink to="/employees">Employee List</CustomLink>
         <CustomLink to="/">About</CustomLink>
       </ul>
     </nav>
