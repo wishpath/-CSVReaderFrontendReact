@@ -4,10 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Please check:
 
-• [Deployed version](http://129.151.221.35/)<br />
-• [Backend source code](https://github.com/wishpath/CSVReaderBackendJavaH2)<br />
-Please note, that this version runs on deployed backend endpoints. If you'd like to switch to backend ran locally, simply switch to:<br />
-• [Frontend source code version for a local backend](https://github.com/wishpath/-CSVReaderFrontendReact/tree/localHostVersion)
+• [Deployed version](http://129.151.221.35/);<br />
+• [Backend source code](https://github.com/wishpath/CSVReaderBackendJavaH2);<br />
+• [sample_contacts.csv]() file for uploading.
 
 ## Instructions
 
